@@ -1,20 +1,23 @@
-pipeline {
-  agent { docker { image 'python:3.7.2' } }
-  stages {
-    stage('build') {
-      steps {
-        sh 'pip install -r requirements.txt'
+pipeline{
+  agent any
+    stage('One'){
+      steps{
+        echo 'Stage 1 echo - This is Ashish!'
       }
     }
-    stage('test') {
-      steps {
-        sh 'python test.py'
+    stage('Two'){
+      steps{
+        input('Do you want to proceed?')
       }
-      post {
-        always {
-          junit 'test-reports/*.xml'
+    }
+    stage('Three'){
+      when{
+        not{
+          branch "master"
         }
-      }    
+      }
+      steps{
+        echo "Stage 3 echo - Proceed on step 2"
+      }
     }
-  }
 }
