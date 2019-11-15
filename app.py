@@ -15,4 +15,4 @@ def hello_user(username):
 if __name__ == '__main__':
   
   """Debug Mode"""
-  app.run(debug=True)
+  app.run(host="0.0.0.0")
