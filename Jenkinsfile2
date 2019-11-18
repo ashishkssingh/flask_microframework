@@ -1,0 +1,23 @@
+pipeline{
+  agent any
+    stage('One'){
+      steps{
+        echo 'Stage 1 echo - This is Ashish!'
+      }
+    }
+    stage('Two'){
+      steps{
+        input('Do you want to proceed?')
+      }
+    }
+    stage('Three'){
+      when{
+        not{
+          branch "master"
+        }
+      }
+      steps{
+        echo "Stage 3 echo - Proceed on step 2"
+      }
+    }
+}
